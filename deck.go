@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
 
 type deck []string
 
@@ -12,6 +16,14 @@ func (d deck) print() {
 	for _, card := range d {
 		fmt.Println(card)
 	}
+}
+
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+func (d deck) saveToFile(path string) error {
+	return ioutil.WriteFile(path, []byte(d.toString()), 0666)
 }
 
 func trucoDeck() deck {
