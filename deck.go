@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"math/rand"
 )
 
 type deck []string
@@ -12,6 +13,10 @@ type deck []string
 func (d deck) deal() (deck, deck) {
 	return d[:3], d[3:]
 }
+
+func (d deck) shuffle() deck {
+	return d
+	)
 
 func (d deck) print() {
 	for _, card := range d {
