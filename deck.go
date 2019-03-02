@@ -3,9 +3,10 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
-	"math/rand"
+	"time"
 )
 
 type deck []string
@@ -15,8 +16,17 @@ func (d deck) deal() (deck, deck) {
 }
 
 func (d deck) shuffle() deck {
+	now := time.Now().UnixNano()
+	source := rand.NewSource(now)
+	r := rand.New(source)
+
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
 	return d
-	)
+}
 
 func (d deck) print() {
 	for _, card := range d {
