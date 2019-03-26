@@ -11,7 +11,7 @@ import (
 
 type deck []string
 
-func (d deck) deal() (deck, deck) {
+func deal() (d deck) (deck, deck) {
 	return d[:3], d[3:]
 }
 
